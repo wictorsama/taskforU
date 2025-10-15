@@ -1,0 +1,252 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #34495e; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; }
+      .small-text { font-family: Arial, sans-serif; font-size: 10px; fill: #7f8c8d; }
+      .layer-title { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #ffffff; }
+      .component-title { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #2c3e50; }
+      .tech-text { font-family: Arial, sans-serif; font-size: 10px; fill: #7f8c8d; font-style: italic; }
+      
+      .presentation-layer { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
+      .business-layer { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
+      .data-layer { fill: #27ae60; stroke: #229954; stroke-width: 2; }
+      .infrastructure-layer { fill: #9b59b6; stroke: #8e44ad; stroke-width: 2; }
+      
+      .component-box { fill: #ffffff; stroke: #bdc3c7; stroke-width: 1; rx: 5; }
+      .arrow { stroke: #34495e; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .bidirectional-arrow { stroke: #e67e22; stroke-width: 2; fill: none; marker-end: url(#arrowhead); marker-start: url(#arrowhead); }
+      
+      .user-icon { fill: #f39c12; stroke: #e67e22; stroke-width: 2; }
+      .browser-icon { fill: #ecf0f1; stroke: #bdc3c7; stroke-width: 1; }
+    </style>
+    
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="600" y="30" text-anchor="middle" class="title">Arquitetura do Sistema TaskForU</text>
+  <text x="600" y="55" text-anchor="middle" class="subtitle">Arquitetura 3-Tier com Containerização Docker</text>
+  
+  <!-- User -->
+  <circle cx="100" cy="120" r="25" class="user-icon"/>
+  <text x="100" y="125" text-anchor="middle" class="layer-title">👤</text>
+  <text x="100" y="155" text-anchor="middle" class="text">Usuário</text>
+  
+  <!-- Browser -->
+  <rect x="50" y="180" width="100" height="60" class="browser-icon"/>
+  <text x="100" y="205" text-anchor="middle" class="component-title">Navegador</text>
+  <text x="100" y="220" text-anchor="middle" class="small-text">Chrome/Firefox</text>
+  <text x="100" y="232" text-anchor="middle" class="small-text">Safari/Edge</text>
+  
+  <!-- Presentation Layer -->
+  <rect x="200" y="80" width="300" height="200" class="presentation-layer"/>
+  <text x="350" y="105" text-anchor="middle" class="layer-title">CAMADA DE APRESENTAÇÃO</text>
+  
+  <!-- React Frontend -->
+  <rect x="220" y="120" width="260" height="140" class="component-box"/>
+  <text x="350" y="140" text-anchor="middle" class="component-title">Frontend React</text>
+  <text x="350" y="155" text-anchor="middle" class="tech-text">React 18 + TypeScript + Ant Design</text>
+  
+  <!-- Frontend Components -->
+  <rect x="230" y="165" width="70" height="35" class="component-box"/>
+  <text x="265" y="180" text-anchor="middle" class="small-text">Login</text>
+  <text x="265" y="192" text-anchor="middle" class="small-text">Page</text>
+  
+  <rect x="310" y="165" width="70" height="35" class="component-box"/>
+  <text x="345" y="180" text-anchor="middle" class="small-text">Dashboard</text>
+  <text x="345" y="192" text-anchor="middle" class="small-text">Page</text>
+  
+  <rect x="390" y="165" width="70" height="35" class="component-box"/>
+  <text x="425" y="180" text-anchor="middle" class="small-text">Tasks</text>
+  <text x="425" y="192" text-anchor="middle" class="small-text">Page</text>
+  
+  <rect x="230" y="210" width="100" height="35" class="component-box"/>
+  <text x="280" y="225" text-anchor="middle" class="small-text">Auth Context</text>
+  <text x="280" y="237" text-anchor="middle" class="small-text">JWT Management</text>
+  
+  <rect x="340" y="210" width="120" height="35" class="component-box"/>
+  <text x="400" y="225" text-anchor="middle" class="small-text">API Service</text>
+  <text x="400" y="237" text-anchor="middle" class="small-text">Axios HTTP Client</text>
+  
+  <!-- Business Layer -->
+  <rect x="600" y="80" width="300" height="200" class="business-layer"/>
+  <text x="750" y="105" text-anchor="middle" class="layer-title">CAMADA DE NEGÓCIO</text>
+  
+  <!-- .NET Backend -->
+  <rect x="620" y="120" width="260" height="140" class="component-box"/>
+  <text x="750" y="140" text-anchor="middle" class="component-title">Backend .NET 8.0</text>
+  <text x="750" y="155" text-anchor="middle" class="tech-text">Web API + Entity Framework Core + JWT</text>
+  
+  <!-- Backend Components -->
+  <rect x="630" y="165" width="80" height="35" class="component-box"/>
+  <text x="670" y="180" text-anchor="middle" class="small-text">Auth</text>
+  <text x="670" y="192" text-anchor="middle" class="small-text">Controller</text>
+  
+  <rect x="720" y="165" width="80" height="35" class="component-box"/>
+  <text x="760" y="180" text-anchor="middle" class="small-text">Tasks</text>
+  <text x="760" y="192" text-anchor="middle" class="small-text">Controller</text>
+  
+  <rect x="810" y="165" width="60" height="35" class="component-box"/>
+  <text x="840" y="180" text-anchor="middle" class="small-text">Swagger</text>
+  <text x="840" y="192" text-anchor="middle" class="small-text">OpenAPI</text>
+  
+  <rect x="630" y="210" width="80" height="35" class="component-box"/>
+  <text x="670" y="225" text-anchor="middle" class="small-text">Auth</text>
+  <text x="670" y="237" text-anchor="middle" class="small-text">Service</text>
+  
+  <rect x="720" y="210" width="80" height="35" class="component-box"/>
+  <text x="760" y="225" text-anchor="middle" class="small-text">Task</text>
+  <text x="760" y="237" text-anchor="middle" class="small-text">Service</text>
+  
+  <rect x="810" y="210" width="60" height="35" class="component-box"/>
+  <text x="840" y="225" text-anchor="middle" class="small-text">EF Core</text>
+  <text x="840" y="237" text-anchor="middle" class="small-text">Context</text>
+  
+  <!-- Data Layer -->
+  <rect x="600" y="320" width="300" height="120" class="data-layer"/>
+  <text x="750" y="345" text-anchor="middle" class="layer-title">CAMADA DE DADOS</text>
+  
+  <!-- PostgreSQL -->
+  <rect x="620" y="360" width="260" height="60" class="component-box"/>
+  <text x="750" y="380" text-anchor="middle" class="component-title">PostgreSQL 15</text>
+  <text x="750" y="395" text-anchor="middle" class="tech-text">Database + Migrations + Indexes</text>
+  <text x="750" y="410" text-anchor="middle" class="small-text">Tables: Users, Tasks</text>
+  
+  <!-- Infrastructure Layer -->
+  <rect x="200" y="320" width="300" height="120" class="infrastructure-layer"/>
+  <text x="350" y="345" text-anchor="middle" class="layer-title">INFRAESTRUTURA</text>
+  
+  <!-- Docker Compose -->
+  <rect x="220" y="360" width="260" height="60" class="component-box"/>
+  <text x="350" y="380" text-anchor="middle" class="component-title">Docker Compose</text>
+  <text x="350" y="395" text-anchor="middle" class="tech-text">Container Orchestration</text>
+  <text x="350" y="410" text-anchor="middle" class="small-text">Frontend + Backend + Database</text>
+  
+  <!-- Testing Layer -->
+  <rect x="950" y="80" width="200" height="200" class="component-box"/>
+  <text x="1050" y="105" text-anchor="middle" class="component-title">Camada de Testes</text>
+  
+  <rect x="970" y="120" width="160" height="40" class="component-box"/>
+  <text x="1050" y="135" text-anchor="middle" class="small-text">Testes Unitários</text>
+  <text x="1050" y="147" text-anchor="middle" class="tech-text">xUnit + Moq + InMemory DB</text>
+  <text x="1050" y="155" text-anchor="middle" class="small-text">8 testes implementados</text>
+  
+  <rect x="970" y="170" width="160" height="40" class="component-box"/>
+  <text x="1050" y="185" text-anchor="middle" class="small-text">Testes de Integração</text>
+  <text x="1050" y="197" text-anchor="middle" class="tech-text">WebApplicationFactory</text>
+  <text x="1050" y="205" text-anchor="middle" class="small-text">(Futuro)</text>
+  
+  <rect x="970" y="220" width="160" height="40" class="component-box"/>
+  <text x="1050" y="235" text-anchor="middle" class="small-text">Testes E2E</text>
+  <text x="1050" y="247" text-anchor="middle" class="tech-text">Cypress + Jest</text>
+  <text x="1050" y="255" text-anchor="middle" class="small-text">(Futuro)</text>
+  
+  <!-- Security Box -->
+  <rect x="50" y="320" width="120" height="120" class="component-box"/>
+  <text x="110" y="340" text-anchor="middle" class="component-title">🔒 Segurança</text>
+  
+  <text x="110" y="360" text-anchor="middle" class="small-text">JWT Authentication</text>
+  <text x="110" y="375" text-anchor="middle" class="small-text">HTTPS/TLS</text>
+  <text x="110" y="390" text-anchor="middle" class="small-text">CORS Policy</text>
+  <text x="110" y="405" text-anchor="middle" class="small-text">Input Validation</text>
+  <text x="110" y="420" text-anchor="middle" class="small-text">SQL Injection Protection</text>
+  
+  <!-- Arrows and Flow -->
+  <!-- User to Browser -->
+  <line x1="100" y1="145" x2="100" y2="180" class="arrow"/>
+  
+  <!-- Browser to Frontend -->
+  <line x1="150" y1="210" x2="200" y2="180" class="arrow"/>
+  
+  <!-- Frontend to Backend -->
+  <line x1="500" y1="180" x2="600" y2="180" class="bidirectional-arrow"/>
+  <text x="550" y="175" text-anchor="middle" class="small-text">HTTP/HTTPS</text>
+  <text x="550" y="190" text-anchor="middle" class="small-text">REST API</text>
+  <text x="550" y="200" text-anchor="middle" class="small-text">JSON + JWT</text>
+  
+  <!-- Backend to Database -->
+  <line x1="750" y1="260" x2="750" y2="320" class="bidirectional-arrow"/>
+  <text x="780" y="290" text-anchor="middle" class="small-text">EF Core</text>
+  <text x="780" y="302" text-anchor="middle" class="small-text">LINQ Queries</text>
+  
+  <!-- Infrastructure connections -->
+  <line x1="350" y1="320" x2="350" y2="280" class="arrow"/>
+  <line x1="400" y1="320" x2="620" y2="260" class="arrow"/>
+  <line x1="450" y1="360" x2="620" y2="390" class="arrow"/>
+  
+  <!-- Testing connections -->
+  <line x1="950" y1="140" x2="900" y2="180" class="arrow"/>
+  <line x1="950" y1="190" x2="900" y2="200" class="arrow"/>
+  
+  <!-- Security connections -->
+  <line x1="170" y1="360" x2="200" y2="200" class="arrow"/>
+  <line x1="170" y1="380" x2="600" y2="200" class="arrow"/>
+  
+  <!-- Port Information -->
+  <rect x="50" y="480" width="1100" height="120" class="component-box"/>
+  <text x="600" y="505" text-anchor="middle" class="component-title">Configuração de Portas e URLs</text>
+  
+  <text x="200" y="530" text-anchor="middle" class="text">Frontend (React)</text>
+  <text x="200" y="545" text-anchor="middle" class="small-text">http://localhost:3000</text>
+  <text x="200" y="557" text-anchor="middle" class="small-text">Container: frontend:3000</text>
+  
+  <text x="450" y="530" text-anchor="middle" class="text">Backend (.NET API)</text>
+  <text x="450" y="545" text-anchor="middle" class="small-text">http://localhost:5000/api</text>
+  <text x="450" y="557" text-anchor="middle" class="small-text">Container: backend:5000</text>
+  
+  <text x="700" y="530" text-anchor="middle" class="text">Swagger UI</text>
+  <text x="700" y="545" text-anchor="middle" class="small-text">http://localhost:5000/swagger</text>
+  <text x="700" y="557" text-anchor="middle" class="small-text">API Documentation</text>
+  
+  <text x="950" y="530" text-anchor="middle" class="text">PostgreSQL</text>
+  <text x="950" y="545" text-anchor="middle" class="small-text">localhost:5432</text>
+  <text x="950" y="557" text-anchor="middle" class="small-text">Container: postgres:5432</text>
+  
+  <text x="200" y="580" text-anchor="middle" class="text">Credenciais de Login:</text>
+  <text x="350" y="580" text-anchor="middle" class="small-text">Email: admin@taskforu.com</text>
+  <text x="500" y="580" text-anchor="middle" class="small-text">Senha: Admin123!</text>
+  
+  <!-- Technology Stack -->
+  <rect x="50" y="630" width="1100" height="120" class="component-box"/>
+  <text x="600" y="655" text-anchor="middle" class="component-title">Stack Tecnológico</text>
+  
+  <text x="150" y="680" text-anchor="middle" class="text">Frontend</text>
+  <text x="150" y="695" text-anchor="middle" class="small-text">• React 18</text>
+  <text x="150" y="707" text-anchor="middle" class="small-text">• TypeScript</text>
+  <text x="150" y="719" text-anchor="middle" class="small-text">• Ant Design</text>
+  <text x="150" y="731" text-anchor="middle" class="small-text">• Axios</text>
+  
+  <text x="350" y="680" text-anchor="middle" class="text">Backend</text>
+  <text x="350" y="695" text-anchor="middle" class="small-text">• .NET 8.0</text>
+  <text x="350" y="707" text-anchor="middle" class="small-text">• Entity Framework Core</text>
+  <text x="350" y="719" text-anchor="middle" class="small-text">• JWT Bearer</text>
+  <text x="350" y="731" text-anchor="middle" class="small-text">• Swagger/OpenAPI</text>
+  
+  <text x="550" y="680" text-anchor="middle" class="text">Database</text>
+  <text x="550" y="695" text-anchor="middle" class="small-text">• PostgreSQL 15</text>
+  <text x="550" y="707" text-anchor="middle" class="small-text">• Migrations</text>
+  <text x="550" y="719" text-anchor="middle" class="small-text">• Indexes</text>
+  <text x="550" y="731" text-anchor="middle" class="small-text">• Constraints</text>
+  
+  <text x="750" y="680" text-anchor="middle" class="text">DevOps</text>
+  <text x="750" y="695" text-anchor="middle" class="small-text">• Docker</text>
+  <text x="750" y="707" text-anchor="middle" class="small-text">• Docker Compose</text>
+  <text x="750" y="719" text-anchor="middle" class="small-text">• Multi-stage builds</text>
+  <text x="750" y="731" text-anchor="middle" class="small-text">• Health checks</text>
+  
+  <text x="950" y="680" text-anchor="middle" class="text">Testing</text>
+  <text x="950" y="695" text-anchor="middle" class="small-text">• xUnit</text>
+  <text x="950" y="707" text-anchor="middle" class="small-text">• Moq</text>
+  <text x="950" y="719" text-anchor="middle" class="small-text">• InMemory DB</text>
+  <text x="950" y="731" text-anchor="middle" class="small-text">• 8 Unit Tests</text>
+  
+  <!-- Footer -->
+  <text x="600" y="780" text-anchor="middle" class="small-text">TaskForU - Sistema de Gerenciamento de Tarefas | Arquitetura 3-Tier com Clean Architecture Principles</text>
+</svg>
