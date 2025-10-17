@@ -52,7 +52,7 @@
   <!-- React Frontend -->
   <rect x="220" y="120" width="260" height="140" class="component-box"/>
   <text x="350" y="140" text-anchor="middle" class="component-title">Frontend React</text>
-  <text x="350" y="155" text-anchor="middle" class="tech-text">React 18 + TypeScript + Ant Design</text>
+  <text x="350" y="155" text-anchor="middle" class="tech-text">React 18 + TypeScript + Redux + React Query</text>
   
   <!-- Frontend Components -->
   <rect x="230" y="165" width="70" height="35" class="component-box"/>
@@ -65,15 +65,19 @@
   
   <rect x="390" y="165" width="70" height="35" class="component-box"/>
   <text x="425" y="180" text-anchor="middle" class="small-text">Tasks</text>
-  <text x="425" y="192" text-anchor="middle" class="small-text">Page</text>
+  <text x="425" y="192" text-anchor="middle" class="small-text">Pages</text>
   
-  <rect x="230" y="210" width="100" height="35" class="component-box"/>
-  <text x="280" y="225" text-anchor="middle" class="small-text">Auth Context</text>
-  <text x="280" y="237" text-anchor="middle" class="small-text">JWT Management</text>
+  <rect x="230" y="210" width="70" height="35" class="component-box"/>
+  <text x="265" y="225" text-anchor="middle" class="small-text">Redux</text>
+  <text x="265" y="237" text-anchor="middle" class="small-text">Store</text>
   
-  <rect x="340" y="210" width="120" height="35" class="component-box"/>
-  <text x="400" y="225" text-anchor="middle" class="small-text">API Service</text>
-  <text x="400" y="237" text-anchor="middle" class="small-text">Axios HTTP Client</text>
+  <rect x="310" y="210" width="70" height="35" class="component-box"/>
+  <text x="345" y="225" text-anchor="middle" class="small-text">React</text>
+  <text x="345" y="237" text-anchor="middle" class="small-text">Query</text>
+  
+  <rect x="390" y="210" width="70" height="35" class="component-box"/>
+  <text x="425" y="225" text-anchor="middle" class="small-text">API</text>
+  <text x="425" y="237" text-anchor="middle" class="small-text">Service</text>
   
   <!-- Business Layer -->
   <rect x="600" y="80" width="300" height="200" class="business-layer"/>

@@ -80,8 +80,8 @@ namespace TaskForU.Api.Tests
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(2, result.Count());
-            Assert.All(result, task => Assert.Equal(userId, task.UserId));
+            Assert.Equal(2, result.Tasks.Count());
+            Assert.All(result.Tasks, task => Assert.Equal(userId, task.UserId));
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace TaskForU.Api.Tests
             int userId = 1;
 
             // Act
-            var result = await _taskService.CreateTaskAsync(createTaskDto, userId);
+            var result = await _taskService.CreateTaskAsync(userId, createTaskDto);
 
             // Assert
             Assert.NotNull(result);
@@ -150,7 +150,7 @@ namespace TaskForU.Api.Tests
             int userId = 1;
 
             // Act
-            var result = await _taskService.UpdateTaskAsync(existingTask.Id, updateTaskDto, userId);
+            var result = await _taskService.UpdateTaskAsync(existingTask.Id, userId, updateTaskDto);
 
             // Assert
             Assert.NotNull(result);

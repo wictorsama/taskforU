@@ -113,7 +113,7 @@ namespace TaskForU.Api.Services
             }
         }
 
-        public async Task<TaskDto?> CreateTaskAsync(CreateTaskDto createTaskDto, int userId)
+        public async Task<TaskDto> CreateTaskAsync(int userId, CreateTaskDto createTaskDto)
         {
             try
             {
@@ -143,11 +143,11 @@ namespace TaskForU.Api.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error creating task for user: {UserId}", userId);
-                return null;
+                throw;
             }
         }
 
-        public async Task<TaskDto?> UpdateTaskAsync(Guid taskId, UpdateTaskDto updateTaskDto, int userId)
+        public async Task<TaskDto?> UpdateTaskAsync(Guid taskId, int userId, UpdateTaskDto updateTaskDto)
         {
             try
             {

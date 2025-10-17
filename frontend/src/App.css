@@ -29,6 +29,7 @@
   align-items: center;
   min-height: 100vh;
   background: #f0f2f5;
+  padding: 16px;
 }
 
 .login-form {
@@ -62,4 +63,81 @@
 
 .task-form {
   margin-bottom: 24px;
+}
+
+/* Media Queries para Responsividade */
+
+/* Tablets e telas médias */
+@media (max-width: 768px) {
+  .ant-layout-header {
+    padding: 0 16px;
+  }
+  
+  .ant-layout-content {
+    padding: 16px;
+  }
+  
+  .login-container {
+    padding: 12px;
+  }
+  
+  .login-form {
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 8px;
+  }
+  
+  .logo {
+    font-size: 16px;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+  .ant-layout-header {
+    padding: 0 12px;
+  }
+  
+  .ant-layout-content {
+    padding: 12px;
+  }
+  
+  .login-container {
+    padding: 8px;
+  }
+  
+  .login-form {
+    padding: 16px;
+    margin: 0 4px;
+    border-radius: 6px;
+  }
+  
+  .logo {
+    font-size: 14px;
+  }
+  
+  .stats-number {
+    font-size: 20px;
+  }
+  
+  .task-actions {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* Telas muito pequenas */
+@media (max-width: 320px) {
+  .login-form {
+    padding: 12px;
+    margin: 0 2px;
+  }
+  
+  .ant-layout-content {
+    padding: 8px;
+  }
+  
+  .stats-number {
+    font-size: 18px;
+  }
 }

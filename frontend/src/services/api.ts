@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { LoginDto, RegisterDto, LoginResponse, Task, CreateTaskDto, UpdateTaskDto, TaskStats, TaskFilter, User } from '../types';
 
-const API_BASE_URL = 'http://localhost:5249/api';
+const API_BASE_URL = 'http://localhost:5000/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -109,6 +109,15 @@ export const tasksApi = {
   getStats: async (): Promise<TaskStats> => {
     const response = await api.get('/tasks/stats');
     return response.data;
+  },
+
+  // Bulk operations
+  bulkDelete: async (ids: string[]): Promise<void> => {
+    await api.post('/tasks/bulk-delete', { ids });
+  },
+
+  bulkUpdate: async (ids: string[], updates: Partial<UpdateTaskDto>): Promise<void> => {
+    await api.post('/tasks/bulk-update', { ids, updates });
   },
 };
 

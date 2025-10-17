@@ -15,6 +15,8 @@ Uma aplicação completa de gerenciamento de tarefas desenvolvida com .NET Core,
 ### Frontend
 - **React 18** - Biblioteca JavaScript para UI
 - **TypeScript** - Superset tipado do JavaScript
+- **Redux Toolkit** - Gerenciamento de estado global
+- **React Query (TanStack Query)** - Cache e sincronização de dados do servidor
 - **Ant Design** - Biblioteca de componentes UI
 - **Axios** - Cliente HTTP para requisições
 
@@ -38,8 +40,11 @@ Uma aplicação completa de gerenciamento de tarefas desenvolvida com .NET Core,
 
 ### Interface do Usuário
 - Design responsivo com Ant Design
+- Gerenciamento de estado otimizado com Redux Toolkit
+- Cache inteligente e sincronização de dados com React Query
 - Feedback visual para ações do usuário
 - Controle de loading e estados de erro
+- Atualizações otimistas para melhor UX
 - Logout automático quando token expira
 
 ## 🏃‍♂️ Como Executar o Projeto
@@ -184,6 +189,9 @@ taskforU/
 │   │   ├── pages/          # Páginas da aplicação
 │   │   ├── services/       # Serviços de API
 │   │   ├── contexts/       # Contextos React
+│   │   ├── store/          # Redux store e slices
+│   │   ├── hooks/          # Hooks customizados (React Query)
+│   │   ├── lib/            # Configurações (QueryClient)
 │   │   └── types/          # Definições TypeScript
 └── docker-compose.yml      # Orquestração dos containers
 ```

@@ -13,8 +13,9 @@ O TaskForU é uma aplicação de gerenciamento de tarefas construída seguindo u
 
 1. **Frontend (Presentation Layer)**
    - React.js 18 com TypeScript
+   - Redux Toolkit para gerenciamento de estado global
+   - React Query (TanStack Query) para cache e sincronização de dados
    - Ant Design para componentes UI
-   - Gerenciamento de estado com Context API
    - Comunicação HTTP via Axios
 
 2. **Backend (Business Logic Layer)**
@@ -60,10 +61,19 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 ```
 
-### 4. MVC Pattern (Frontend)
-- **Models**: Tipos TypeScript em `/types`
-- **Views**: Componentes React em `/components` e `/pages`
-- **Controllers**: Hooks customizados e Context API
+### 4. Redux Pattern (Frontend)
+Implementado com Redux Toolkit para gerenciamento de estado:
+- **Store**: Estado global centralizado
+- **Slices**: Redutores e actions organizados por domínio
+- **Selectors**: Funções para acessar estado específico
+- **Middleware**: Redux DevTools para debugging
+
+### 5. Server State Management (Frontend)
+Implementado com React Query (TanStack Query):
+- **Queries**: Cache automático de dados do servidor
+- **Mutations**: Operações de escrita com invalidação de cache
+- **Optimistic Updates**: Atualizações otimistas para melhor UX
+- **Background Refetch**: Sincronização automática de dados
 
 ## 🔄 Fluxo de Dados
 
@@ -125,15 +135,26 @@ sequenceDiagram
 src/
 ├── components/          # Componentes reutilizáveis
 │   ├── AppLayout.tsx   # Layout principal
-│   └── TaskForm.tsx    # Formulário de tarefas
+│   └── ProtectedRoute.tsx # Proteção de rotas
 ├── pages/              # Páginas da aplicação
 │   ├── Login.tsx       # Tela de login
 │   ├── Dashboard.tsx   # Dashboard principal
-│   └── Tasks.tsx       # Gerenciamento de tarefas
+│   ├── Tasks.tsx       # Gerenciamento de tarefas (Context API)
+│   └── TasksNew.tsx    # Gerenciamento de tarefas (Redux + React Query)
+├── store/              # Redux Toolkit
+│   ├── index.ts        # Configuração da store
+│   ├── hooks.ts        # Hooks tipados do Redux
+│   └── slices/         # Slices por domínio
+│       └── uiSlice.ts  # Estado da interface
+├── hooks/              # React Query hooks
+│   └── useTasks.ts     # Hooks para operações de tarefas
+├── lib/                # Configurações
+│   └── queryClient.ts  # Configuração do React Query
 ├── services/           # Camada de serviços
 │   └── api.ts          # Cliente HTTP
-├── contexts/           # Gerenciamento de estado
-│   └── AuthContext.tsx # Contexto de autenticação
+├── contexts/           # Contextos React (legado)
+│   ├── AuthContext.tsx # Contexto de autenticação
+│   └── TaskContext.tsx # Contexto de tarefas (legado)
 └── types/              # Definições TypeScript
     └── index.ts        # Tipos compartilhados
 ```
@@ -154,7 +175,8 @@ backend/
 │   └── Task.cs
 ├── DTOs/               # Objetos de transferência
 │   ├── UserDto.cs
-│   └── TaskDto.cs
+│   ├── TaskDto.cs
+│   └── PagedTasksDto.cs  # DTO para paginação
 ├── Data/               # Acesso a dados
 │   └── ApplicationDbContext.cs
 └── Tests/              # Testes unitários
@@ -198,8 +220,15 @@ services:
 ## 📈 Escalabilidade e Performance
 
 ### Estratégias Implementadas
-1. **Paginação**: Implementada nos endpoints de listagem
-2. **Filtros**: Busca por status e texto
+1. **Paginação Completa**: Sistema robusto com total de registros
+   - Backend retorna `PagedTasksDto` com metadados completos
+   - Frontend usa `totalCount` real para navegação precisa
+   - Mantém filtros aplicados durante navegação
+   - Suporte a diferentes tamanhos de página
+2. **Filtros Avançados**: Busca por status e texto
+   - Combinação de múltiplos filtros
+   - Aplicação no backend para performance
+   - Preservação de estado durante paginação
 3. **Índices**: Configurados no Entity Framework
 4. **Caching**: Headers HTTP apropriados
 5. **Lazy Loading**: Componentes React otimizados
@@ -309,6 +338,9 @@ Pipeline:
 - [x] CRUD completo
 - [x] Containerização Docker
 - [x] Testes unitários básicos
+- [x] Paginação robusta com total de registros
+- [x] Filtros avançados combinados
+- [x] Interface responsiva completa
 
 ### Fase 2 (Próximos 3 meses)
 - [ ] Implementar Redis cache

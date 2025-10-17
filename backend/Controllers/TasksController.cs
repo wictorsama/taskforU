@@ -98,12 +98,8 @@ namespace TaskForU.Api.Controllers
                     return Unauthorized();
                 }
 
-                var task = await _taskService.CreateTaskAsync(createTaskDto, userId.Value);
-                if (task == null)
-                {
-                    return BadRequest(new { message = "Failed to create task" });
-                }
-
+                var task = await _taskService.CreateTaskAsync(userId.Value, createTaskDto);
+                
                 return CreatedAtAction(nameof(GetTask), new { id = task.Id }, task);
             }
             catch (Exception ex)
@@ -135,7 +131,7 @@ namespace TaskForU.Api.Controllers
                     return Unauthorized();
                 }
 
-                var task = await _taskService.UpdateTaskAsync(id, updateTaskDto, userId.Value);
+                var task = await _taskService.UpdateTaskAsync(id, userId.Value, updateTaskDto);
                 if (task == null)
                 {
                     return NotFound(new { message = "Task not found" });

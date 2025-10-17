@@ -35,14 +35,43 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
 
-  const refreshTasks = useCallback(async (filter?: TaskFilter) => {
+  const refreshTasks = useCallback(async (filter: TaskFilter = { page: 1, pageSize: 10 }) => {
     try {
       setLoading(true);
+      // Resetar o estado para evitar inconsistências durante o carregamento
+      setTasks([]);
+      setTotalCount(0);
+      
       const response = await tasksApi.getTasks(filter);
-      setTasks(response.tasks);
-      setTotalCount(response.totalCount);
+      
+      // Validação rigorosa e atualização atômica dos dados
+      if (response && response.tasks && Array.isArray(response.tasks) && typeof response.totalCount === 'number') {
+        // Atualização atômica: só atualizar se ambos os valores são válidos
+        const newTasks = response.tasks;
+        const newTotalCount = response.totalCount;
+        
+        // Log para debug
+        console.log('📡 API Response:', {
+          tasksReceived: newTasks.length,
+          totalCount: newTotalCount,
+          filter,
+          isValidResponse: true
+        });
+        
+        // Atualizar de forma síncrona para evitar race conditions
+        setTasks(newTasks);
+        setTotalCount(newTotalCount);
+      } else {
+        console.warn('⚠️ Invalid API response:', response);
+        // Se a resposta não for válida, manter estado limpo
+        setTasks([]);
+        setTotalCount(0);
+      }
     } catch (error) {
       console.error('Erro ao carregar tarefas:', error);
+      // Em caso de erro, garantir que o estado seja consistente
+      setTasks([]);
+      setTotalCount(0);
     } finally {
       setLoading(false);
     }
@@ -63,6 +92,8 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
 
   const addTask = useCallback((task: Task) => {
     setTasks(prev => [task, ...prev]);
+    // Atualizar totalCount também
+    setTotalCount(prev => prev + 1);
     setStats(prev => ({
       totalTasks: prev.totalTasks + 1,
       pendingTasks: prev.pendingTasks + 1,
@@ -105,6 +136,8 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
     const taskToRemove = tasks.find(t => t.id === taskId);
     if (taskToRemove) {
       setTasks(prev => prev.filter(task => task.id !== taskId));
+      // Atualizar totalCount também
+      setTotalCount(prev => prev - 1);
       setStats(prev => ({
         totalTasks: prev.totalTasks - 1,
         completedTasks: taskToRemove.status === 1 ? prev.completedTasks - 1 : prev.completedTasks,

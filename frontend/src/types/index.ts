@@ -11,24 +11,29 @@ export interface Task {
   title: string;
   description: string;
   status: TaskStatus; // Changed from isCompleted to status enum
+  priority: number; // Added priority field
   createdAt: string;
+  updatedAt: string; // Added missing updatedAt field
   userId: number;
 }
 
 export enum TaskStatus {
   Pending = 0,
-  Done = 1
+  Completed = 1,
+  Done = 1 // Alias para Completed
 }
 
 export interface CreateTaskDto {
   title: string;
   description: string;
+  priority?: number;
 }
 
 export interface UpdateTaskDto {
   title?: string;
   description?: string;
   status?: TaskStatus;
+  priority?: number;
 }
 
 export interface LoginDto {
@@ -55,9 +60,11 @@ export interface TaskStats {
 
 export interface TaskFilter {
   status?: TaskStatus;
+  priority?: number;
   search?: string;
   sortBy?: string;
-  sortDescending?: boolean;
+  sortOrder?: 'asc' | 'desc';
   page?: number;
   pageSize?: number;
+  currentPage?: number; // Added missing currentPage property
 }
