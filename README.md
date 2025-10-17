@@ -244,6 +244,18 @@ docker-compose logs frontend
 docker-compose logs postgres
 ```
 
+## 📚 Documentação Adicional
+
+### 📖 Guias e Documentação
+- **[🚀 Getting Started](./GETTING_STARTED.md)** - Guia completo de configuração e execução para novos usuários
+- **[🏗️ Arquitetura do Sistema](./ARCHITECTURE.md)** - Documentação detalhada da arquitetura, padrões e estrutura do projeto
+- **[🎨 Padrões de Design](./docs/DESIGN_PATTERNS.md)** - Padrões de design e boas práticas utilizadas no projeto
+
+### 🎯 Diagramas e Visualizações
+- **[📊 Diagrama de Arquitetura](./docs/architecture-diagram.svg)** - Visualização completa da arquitetura 3-tier do sistema
+
+> 💡 **Dica**: Para uma configuração rápida, consulte o [Getting Started](./GETTING_STARTED.md). Para entender a arquitetura em detalhes, veja [ARCHITECTURE.md](./ARCHITECTURE.md) e o [diagrama visual](./docs/architecture-diagram.svg).
+
 ## 📝 API Endpoints
 
 ### Autenticação
