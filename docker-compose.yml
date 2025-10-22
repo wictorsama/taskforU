@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: taskforu_postgres
+    environment:
+      POSTGRES_DB: taskforu_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - taskforu_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d taskforu_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: taskforu_backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=taskforu_db;Username=postgres;Password=postgres
+      - JwtSettings__SecretKey=your-super-secret-jwt-key-that-is-at-least-32-characters-long
+      - JwtSettings__Issuer=TaskForU.Api
+      - JwtSettings__Audience=TaskForU.Client
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - taskforu_network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: taskforu_frontend
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - taskforu_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  taskforu_network:
+    driver: bridge
