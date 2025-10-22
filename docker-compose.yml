@@ -45,7 +45,7 @@ services:
       dockerfile: Dockerfile
     container_name: taskforu_frontend
     environment:
-      - REACT_APP_API_URL=http://localhost:5000/api
+      - REACT_APP_API_URL=http://backend:5000/api
     ports:
       - "3000:3000"
     depends_on:
