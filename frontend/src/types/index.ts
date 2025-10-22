@@ -26,6 +26,7 @@ export enum TaskStatus {
 export interface CreateTaskDto {
   title: string;
   description: string;
+  status?: TaskStatus;
   priority?: number;
 }
 

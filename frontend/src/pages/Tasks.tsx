@@ -157,7 +157,8 @@ const Tasks: React.FC = () => {
       } else {
         const createData: CreateTaskDto = {
           title: values.title,
-          description: values.description
+          description: values.description,
+          status: values.status
         };
         const newTask = await tasksApi.createTask(createData);
         
@@ -218,8 +219,8 @@ const Tasks: React.FC = () => {
         // Não renderizar placeholders
         if (record.isPlaceholder) return null;
         return (
-          <Tag color={status === TaskStatus.Done ? 'green' : 'orange'}>
-            {status === TaskStatus.Done ? 'Concluída' : 'Pendente'}
+          <Tag color={status === TaskStatus.Completed ? 'green' : 'gold'}>
+            {status === TaskStatus.Completed ? 'Concluída' : 'Pendente'}
           </Tag>
         );
       }
@@ -255,14 +256,13 @@ const Tasks: React.FC = () => {
             <Button
               type="link"
               size="small"
-              title={record.status === TaskStatus.Done ? 'Marcar como Pendente' : 'Marcar como Concluída'}
+              icon={record.status === TaskStatus.Completed ? <UndoOutlined style={{ color: '#faad14' }} /> : <CheckOutlined style={{ color: '#52c41a' }} />}
+              title={record.status === TaskStatus.Completed ? 'Marcar como Pendente' : 'Marcar como Concluída'}
               onClick={() => handleStatusChange(
                 record.id,
-                record.status === TaskStatus.Done ? TaskStatus.Pending : TaskStatus.Done
+                record.status === TaskStatus.Completed ? TaskStatus.Pending : TaskStatus.Completed
               )}
-            >
-              {record.status === TaskStatus.Done ? '↩️' : '✅'}
-            </Button>
+            />
             <Popconfirm
               title="Tem certeza que deseja excluir esta tarefa?"
               onConfirm={() => handleDelete(record.id)}
@@ -307,18 +307,18 @@ const Tasks: React.FC = () => {
               >
                 <Avatar
                   style={{
-                    backgroundColor: task.status === TaskStatus.Done ? '#52c41a' : '#faad14'
+                    backgroundColor: task.status === TaskStatus.Completed ? '#52c41a' : '#faad14'
                   }}
-                  icon={task.status === TaskStatus.Done ? <CheckOutlined /> : <UndoOutlined />}
+                  icon={task.status === TaskStatus.Completed ? <CheckOutlined style={{ color: '#52c41a' }} /> : <UndoOutlined style={{ color: '#faad14' }} />}
                 />
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
                     <Text strong style={{ fontSize: '14px' }}>{task.title}</Text>
-                    <Tag 
-                      color={task.status === TaskStatus.Done ? 'green' : 'orange'}
+                    <Tag
+                      color={task.status === TaskStatus.Completed ? 'green' : 'gold'}
                       style={{ fontSize: '10px', padding: '2px 6px' }}
                     >
-                      {task.status === TaskStatus.Done ? 'Concluída' : 'Pendente'}
+                      {task.status === TaskStatus.Completed ? 'Concluída' : 'Pendente'}
                     </Tag>
                   </div>
                   <Text type="secondary" style={{ fontSize: '12px', display: 'block', marginBottom: '8px' }}>
@@ -338,10 +338,10 @@ const Tasks: React.FC = () => {
                       <Button
                         type="text"
                         size={isMobile ? 'middle' : 'large'}
-                        icon={task.status === TaskStatus.Done ? <UndoOutlined /> : <CheckOutlined />}
+                        icon={task.status === TaskStatus.Completed ? <UndoOutlined style={{ color: '#faad14' }} /> : <CheckOutlined style={{ color: '#52c41a' }} />}
                         onClick={() => handleStatusChange(
                           task.id,
-                          task.status === TaskStatus.Done ? TaskStatus.Pending : TaskStatus.Done
+                          task.status === TaskStatus.Completed ? TaskStatus.Pending : TaskStatus.Completed
                         )}
                       />
                       <Popconfirm
@@ -567,18 +567,17 @@ const Tasks: React.FC = () => {
               />
             </Form.Item>
 
-            {editingTask && (
-              <Form.Item
-                name="status"
-                label="Status"
-                rules={[{ required: true, message: 'Por favor, selecione o status!' }]}
-              >
-                <Select placeholder="Selecione o status">
-                  <Option value={TaskStatus.Pending}>Pendente</Option>
-                  <Option value={TaskStatus.Done}>Concluída</Option>
-                </Select>
-              </Form.Item>
-            )}
+            <Form.Item
+              name="status"
+              label="Status"
+              rules={[{ required: true, message: 'Por favor, selecione o status!' }]}
+              initialValue={TaskStatus.Pending}
+            >
+              <Select placeholder="Selecione o status">
+                <Option value={TaskStatus.Pending}>Pendente</Option>
+                <Option value={TaskStatus.Completed}>Concluída</Option>
+              </Select>
+            </Form.Item>
 
             <Form.Item>
               <Space style={{ width: '100%', justifyContent: 'flex-end' }}>

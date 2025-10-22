@@ -307,7 +307,7 @@ const TasksNew: React.FC = () => {
         <Space>
           <Button
             type="text"
-            icon={record.status === TaskStatus.Pending ? <CheckOutlined /> : <UndoOutlined />}
+            icon={record.status === TaskStatus.Pending ? <CheckOutlined style={{ color: '#52c41a' }} /> : <UndoOutlined style={{ color: '#faad14' }} />}
             onClick={() => handleToggleStatus(record)}
             title={record.status === TaskStatus.Pending ? 'Marcar como concluída' : 'Reabrir tarefa'}
           />

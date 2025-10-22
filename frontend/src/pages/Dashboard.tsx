@@ -90,7 +90,7 @@ const Dashboard: React.FC = () => {
                 value={stats.pendingTasks}
                 prefix={<ClockCircleOutlined />}
                 valueStyle={{ 
-                  color: '#cf1322',
+                  color: '#faad14',
                   fontSize: isMobile ? '20px' : '24px',
                   fontWeight: 'bold'
                 }}

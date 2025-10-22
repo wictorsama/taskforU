@@ -122,7 +122,7 @@ namespace TaskForU.Api.Services
                     Id = Guid.NewGuid(),
                     Title = createTaskDto.Title,
                     Description = createTaskDto.Description,
-                    Status = Models.TaskStatus.Pending,
+                    Status = createTaskDto.Status ?? Models.TaskStatus.Pending,
                     UserId = userId,
                     CreatedAt = DateTime.UtcNow
                 };
