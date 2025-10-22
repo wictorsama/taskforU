@@ -106,7 +106,7 @@ dist-ssr/
 
 # Docker
 .dockerignore
-Dockerfile
+# Dockerfile
 # docker-compose.yml
 docker-compose.override.yml
 
