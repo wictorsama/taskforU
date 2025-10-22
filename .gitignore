@@ -106,8 +106,6 @@ dist-ssr/
 
 # Docker
 .dockerignore
-# Dockerfile
-# docker-compose.yml
 docker-compose.override.yml
 
 # OS generated files
